@@ -1,4 +1,4 @@
-﻿import { IDirectiveConfiguration, IModuleConfiguration } from './decoratorConfigs';
+﻿import { IDirectiveConfiguration, IModuleConfiguration } from './DecoratorConfigs';
 import { ModuleConfigurator } from './ModuleConfigurator';
 import { Injector } from './Injector';
 
