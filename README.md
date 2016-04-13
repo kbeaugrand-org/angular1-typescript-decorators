@@ -29,12 +29,12 @@ npm install angular1-typescript-decorators --save
 
 ## Steps to get working on it
 
-After you've installed the package you are ready to write your first application.
+Once you've installed the package you are ready to write your first application.
 
 ### Create a module
 
 ```ts
-import { Module } from '../lib/angular1-decorators/angular1-decorators';
+import { Module } from '../lib/angular1-typescript-decorators/dist/Decorators';
 @Module({
     element: document,
     config: { strictDi: true }
