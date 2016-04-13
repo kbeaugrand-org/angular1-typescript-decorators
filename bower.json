@@ -6,7 +6,9 @@
   ],
   "description": "Write your Angular 1 app in the Angular 2 way using Typescript",
   "main": [
-    "./dist/angular-1-decorators.js",
+    "./dist/angular1-decorators.js",
+    "./dist/angular1-decorators.js.map",
+    "./dist/angular1-decorators.d.ts"
   ],
   "moduleType": [],
   "keywords": [
