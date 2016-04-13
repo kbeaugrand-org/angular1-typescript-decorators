@@ -1,11 +1,20 @@
 {
+    "files": [
+        "src/DecoratorConfigs.ts",
+        "src/Decorators.ts",
+        "src/Injector.ts",
+        "src/ModuleConfigurator.ts",
+        "src/Tools.ts"
+  ],
   "compilerOptions": {
-    "module": "amd",
+    "module": "system",
     "noImplicitAny": false,
     "noEmitOnError": true,
-    "removeComments": false,
+    "declaration": true,
+    "removeComments": true,
     "sourceMap": true,
     "experimentalDecorators": true,
-    "target": "es5"
+    "target": "es5",
+    "outFile": "dist/angular1-decorators.js"                   
   }
 }

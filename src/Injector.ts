@@ -1,4 +1,5 @@
-﻿import { camelize } from './Tools';
+﻿/// <reference path="../bower_components/reflect-metadata/typings.d.ts" />
+import { camelize } from './Tools';
 
 function buildParamMetadataKey(index: number) {
     return ':p_' + index;

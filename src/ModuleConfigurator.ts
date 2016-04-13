@@ -1,4 +1,7 @@
-﻿import { IModuleConfiguration, IDirectiveConfiguration } from './DecoratorConfigs'
+﻿/// <reference path="../bower_components/reflect-metadata/typings.d.ts" />
+/// <reference path="../typings/tsd.d.ts" />
+
+import { IModuleConfiguration, IDirectiveConfiguration } from './DecoratorConfigs'
 import { Injector } from './Injector';
 import { camelize } from './Tools';
 
