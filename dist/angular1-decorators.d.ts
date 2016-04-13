@@ -1,6 +1,28 @@
-/// <reference path="../bower_components/reflect-metadata/typings.d.ts" />
-/// <reference path="../typings/tsd.d.ts" />
-declare module "DecoratorConfigs" {
+declare namespace Reflect {
+    function decorate(decorators: ClassDecorator[], target: Function): Function;
+    function decorate(decorators: (PropertyDecorator | MethodDecorator)[], target: Object, targetKey: string | symbol, descriptor?: PropertyDescriptor): PropertyDescriptor;
+    function metadata(metadataKey: any, metadataValue: any): {
+        (target: Function): void;
+        (target: Object, targetKey: string | symbol): void;
+    };
+    function defineMetadata(metadataKey: any, metadataValue: any, target: Object): void;
+    function defineMetadata(metadataKey: any, metadataValue: any, target: Object, targetKey: string | symbol): void;
+    function hasMetadata(metadataKey: any, target: Object): boolean;
+    function hasMetadata(metadataKey: any, target: Object, targetKey: string | symbol): boolean;
+    function hasOwnMetadata(metadataKey: any, target: Object): boolean;
+    function hasOwnMetadata(metadataKey: any, target: Object, targetKey: string | symbol): boolean;
+    function getMetadata(metadataKey: any, target: Object): any;
+    function getMetadata(metadataKey: any, target: Object, targetKey: string | symbol): any;
+    function getOwnMetadata(metadataKey: any, target: Object): any;
+    function getOwnMetadata(metadataKey: any, target: Object, targetKey: string | symbol): any;
+    function getMetadataKeys(target: Object): any[];
+    function getMetadataKeys(target: Object, targetKey: string | symbol): any[];
+    function getOwnMetadataKeys(target: Object): any[];
+    function getOwnMetadataKeys(target: Object, targetKey: string | symbol): any[];
+    function deleteMetadata(metadataKey: any, target: Object): boolean;
+    function deleteMetadata(metadataKey: any, target: Object, targetKey: string | symbol): boolean;
+}
+declare module "src/DecoratorConfigs" {
     export interface IModuleConfiguration {
         name?: string;
         element?: string | Element | JQuery | Document;
@@ -32,18 +54,18 @@ declare module "DecoratorConfigs" {
         };
     }
 }
-declare module "Tools" {
+declare module "src/Tools" {
     export function camelize(str: any): any;
 }
-declare module "Injector" {
+declare module "src/Injector" {
     export class Injector {
         static inject(target: any, injectInline?: boolean): string[];
         private static markAsInjectable(target);
         private static resolveParamNames(target, methodName?);
     }
 }
-declare module "ModuleConfigurator" {
-    import { IModuleConfiguration, IDirectiveConfiguration } from "DecoratorConfigs";
+declare module "src/ModuleConfigurator" {
+    import { IModuleConfiguration, IDirectiveConfiguration } from "src/DecoratorConfigs";
     export class ModuleConfigurator {
         private target;
         private module;
@@ -73,8 +95,8 @@ declare module "ModuleConfigurator" {
         private configureDirectives(app, config);
     }
 }
-declare module "Decorators" {
-    import { IDirectiveConfiguration, IModuleConfiguration } from "DecoratorConfigs";
+declare module "src/Decorators" {
+    import { IDirectiveConfiguration, IModuleConfiguration } from "src/DecoratorConfigs";
     export function Controller(): (target: any) => any;
     export function Directive(config?: IDirectiveConfiguration): (target: any) => any;
     export function DirectiveCompileFn(): (target: any, key: string, descriptor: any) => any;

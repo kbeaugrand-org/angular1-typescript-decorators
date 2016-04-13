@@ -1,5 +1,7 @@
 {
     "files": [
+        "typings/tsd.d.ts",
+        "node_modules/reflect-metadata/Reflect.ts",
         "src/DecoratorConfigs.ts",
         "src/Decorators.ts",
         "src/Injector.ts",

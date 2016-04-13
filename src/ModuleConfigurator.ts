@@ -1,6 +1,4 @@
-﻿/// <reference path="../bower_components/reflect-metadata/typings.d.ts" />
-/// <reference path="../typings/tsd.d.ts" />
-
+﻿
 import { IModuleConfiguration, IDirectiveConfiguration } from './DecoratorConfigs'
 import { Injector } from './Injector';
 import { camelize } from './Tools';
@@ -32,7 +30,7 @@ export class ModuleConfigurator {
         var depedencies = module.dependencies;
 
         if (module.moduleDependencies && module.moduleDependencies.length)
-            module = _.union(depedencies, module.moduleDependencies.map(x => Reflect.getMetadata(metadataTypes.targetName, x)));
+            module = depedencies.concat(module.moduleDependencies.map(x => Reflect.getMetadata(metadataTypes.targetName, x)));
 
         var app = angular.module(this.moduleName, depedencies);
 
