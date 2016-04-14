@@ -6,7 +6,9 @@ Write your Angular1 App with Typescript using Decorators.
 ### Example use:
 
 ```ts
-import { Module, ModuleConfig, ModuleRun Directive, DirectiveLinkFn, Controller } from '../lib/angular1-typescript-decorators/dist/Decorators';
+import { Module, ModuleConfig, ModuleRun, 
+        Directive, DirectiveLinkFn, 
+        Controller } from '../lib/angular1-typescript-decorators/dist/Decorators';
 
 @Module({
     element: document,
