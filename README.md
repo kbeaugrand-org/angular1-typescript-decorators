@@ -77,7 +77,7 @@ Remarks : `strictDi: true` will tell to angular to use the strict dependency inj
 import { Controller } from '../lib/angular1-typescript-decorators/dist/Decorators';
 
 @Controller()
-class SomeController{
+export class SomeController{
     constructor(private $http: ng.IHttpService, private $timeout: ng.ITimeoutService, private $scope: ){ }
     
     myCtrlFunc(){
@@ -99,7 +99,7 @@ Remarks, once that's done, you'll have to register your controller in the module
 import { Directive, DirectiveLinkFn } from '../lib/angular1-typescript-decorators/dist/Decorators';
 
 @Directive({name: 'myDirective'})
-class SomeDirective(){
+export class SomeDirective(){
     @DirectiveLinkFn()
     link($scope, $element, $attrs){ ... }
 }
@@ -116,7 +116,7 @@ Remarks, once that's done, you'll have to register your directive in the module 
 import { Service, Log } from '../lib/angular1-typescript-decorators/dist/Decorators';
 
 @Service('customService')
-class MyService{
+export class MyService{
     constructor(private $http: ng.IHttpService) { }
     
     @Log()
@@ -143,7 +143,7 @@ import { Controller } from '../lib/angular1-typescript-decorators/dist/Decorator
 import { MyService } from '../services/MyService'
 
 @Controller()
-class SomeController{
+export class SomeController{
     constructor(private customService: MyService ){ }
     
     myCtrlFunc(){
