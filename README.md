@@ -26,9 +26,8 @@ angular.module('myModule', [])
                         controller: 'someController',
                         controllerAs: 'myCtrl'
                 }
-        })
-        
-        
+        });
+angular.bootstrap(document, ['myModule']);        
 ```
 
 You would like to develop like this :
@@ -76,9 +75,10 @@ class SomeController{
 ```
 
 This will give you more flexibility with the powerfull of Type script : 
-- Intellisens, 
+- Intellisense, 
 - Compilation,
 - Inheritance,
+- Type validation,
 - and so on..
 
 Further more, do not take care of Angular dependency injection (the decorators cill do the stuff...) :)
