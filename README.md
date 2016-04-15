@@ -81,7 +81,7 @@ This will give you more flexibility with the powerfull of Type script :
 - Type validation,
 - and so on..
 
-Further more, do not take care of Angular dependency injection (the decorators cill do the stuff...) :)
+Further more, do not take care of Angular dependency injection (the decorators will do the stuff for you...) :)
 
 ### Install:
 
