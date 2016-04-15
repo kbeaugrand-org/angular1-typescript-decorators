@@ -5,6 +5,34 @@ Status: In-Development
 Write your Angular1 App with Typescript using Decorators.
 ### Example use:
 
+Instead of doing something like this :
+
+```javascript
+angular.module('myModule', [])
+        .value('myValue', 'My Text Value')
+        .config(['$compileProvider', function($compileProvider){
+               $compileProvider.debugInfoEnabled(false); 
+        }])
+        .run(['myValue', function(myValue){ }])
+        .controller('someController', ['$http', '$timeout', '$scope', function($http, $timeout, $scope){
+                this.myCtrlFunc = function(){
+                        $timeout(function(){
+                            console.log('myCtrlFunc');
+                        }, 1000);
+                }
+        }])
+        .directive('someDirective', function(){
+                return {
+                        controller: 'someController',
+                        controllerAs: 'myCtrl'
+                }
+        })
+        
+        
+```
+
+You would like to develop like this :
+
 ```ts
 import { Module, ModuleConfig, ModuleRun, 
         Directive, DirectiveLinkFn, 
@@ -46,6 +74,14 @@ class SomeController{
     }
 }
 ```
+
+This will give you more flexibility with the powerfull of Type script : 
+- Intellisens, 
+- Compilation,
+- Inheritance,
+- and so on..
+
+Further more, do not take care of Angular dependency injection (the decorators cill do the stuff...) :)
 
 ### Install:
 
