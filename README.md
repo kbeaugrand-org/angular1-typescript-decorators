@@ -24,7 +24,8 @@ angular.module('myModule', [])
         .directive('someDirective', function(){
                 return {
                         controller: 'someController',
-                        controllerAs: 'myCtrl'
+                        controllerAs: 'myCtrl',
+                        link: function($scope, $element, $attrs){ ... }
                 }
         });
 angular.bootstrap(document, ['myModule']);        
