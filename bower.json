@@ -6,9 +6,16 @@
   ],
   "description": "Write your Angular 1 app in the Angular 2 way using Typescript",
   "main": [
-    "dist/angular1-decorators.js",
-    "dist/angular1-decorators.js.map",
-    "dist/angular1-decorators.d.ts"
+    "dist/DecoratorConfig.d.ts",
+    "dist/DecoratorConfig.js",
+    "dist/Decorators.d.ts",
+    "dist/Decorators.js",
+    "dist/Injector.d.ts",
+    "dist/Injector.js",
+    "dist/ModuleConfigurator.d.ts",
+    "dist/ModuleConfigurator.js",
+    "dist/Tools.d.ts",
+    "dist/Tools.js"
   ],
   "moduleType": [],
   "keywords": [
@@ -22,7 +29,10 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "src",
+    "typings",
+    ".vscode"
   ],
   "dependencies": {
     "angular": "^1.5.3",
