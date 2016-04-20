@@ -1,4 +1,4 @@
-﻿
+﻿/// <reference path="../typings/tsd.d.ts" />
 import { IModuleConfiguration, IDirectiveConfiguration } from './DecoratorConfigs'
 import { Injector } from './Injector';
 import { camelize } from './Tools';

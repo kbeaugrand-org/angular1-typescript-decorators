@@ -1,4 +1,5 @@
-﻿import { camelize } from './Tools';
+﻿/// <reference path="../typings/tsd.d.ts" />
+import { camelize } from './Tools';
 
 function buildParamMetadataKey(index: number) {
     return ':p_' + index;
