@@ -84,15 +84,43 @@ This will give you more flexibility with the powerfull of Type script :
 
 Further more, do not take care of Angular dependency injection (the decorators will do the stuff for you...) :)
 
-### Install:
+## Install:
+### Via npm
 
 ```bash
 npm install angular1-typescript-decorators --save
 ```
 
+### Via bower
+```bash
+bower install angular1-typescript-decorators --save
+```
+
 ## Steps to get working on it
 
 Once you've installed the package you are ready to write your first application.
+
+### Link into your web app
+```html
+<script>
+    System.config({
+        transpiler: 'typescript',
+        map: {
+            typescript: 'lib/typescript/lib/typescript.js'
+        },
+        packages: {
+            "lib/angular1-typescript-decorators/dist": {
+                defaultExtension: 'js'
+            }
+            "app": {
+                defaultExtension: 'ts'
+            }
+        }
+    });
+    System.import('app/Module')
+          .then(null, console.error.bind(console));
+</script>
+```
 
 ### Create a module
 
