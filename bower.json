@@ -32,6 +32,7 @@
     "tests",
     "src",
     "typings",
+    "demo",
     ".vscode"
   ],
   "dependencies": {
