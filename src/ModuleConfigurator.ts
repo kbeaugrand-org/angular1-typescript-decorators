@@ -1,5 +1,5 @@
 ﻿/// <reference path="../typings/tsd.d.ts" />
-import { IModuleConfiguration, IDirectiveConfiguration } from './DecoratorConfigs'
+import { IModuleConfiguration, IDirectiveConfiguration, IControllerConfiguration } from './DecoratorConfigs'
 import { Injector } from './Injector';
 import { camelize } from './Tools';
 
@@ -9,6 +9,7 @@ var metadataTypes = {
     moduleConstant: 'module:constant',
     moduleConfig: 'module:config',
     moduleRun: 'module:run',
+    controllerConfig: 'controller:config',
     directiveConfig: 'directive:config',
     directiveCompile: 'directive:compileFn',
     directiveLink: 'directive:link',
@@ -85,9 +86,9 @@ export class ModuleConfigurator {
         Reflect.defineMetadata(metadataTypes.directiveConfig, config, target);
     }
 
-    static setController(target: any, name?: string) {
+    static setController(target: any, config?: IControllerConfiguration) {
         Injector.inject(target);
-        Reflect.defineMetadata(metadataTypes.targetName, name, target);
+        Reflect.defineMetadata(metadataTypes.controllerConfig, config, target);
     }
 
     static setService(target: any, name?: string) {
@@ -118,7 +119,11 @@ export class ModuleConfigurator {
     }
 
     private addController(app: ng.IModule, target: any) {
-        var controllerName = this.getTargetName(target);
+        var controllerConfig = Reflect.getMetadata(metadataTypes.controllerConfig, target);
+        var controllerName = controllerConfig.name;
+
+        if (!controllerName)
+            controllerName = this.getTargetName(target);
 
         console.debug(`Registering Controller '${controllerName}'`);
         app.controller(controllerName, target);
@@ -173,6 +178,32 @@ export class ModuleConfigurator {
         config.controllers.forEach(x => {
             this.addController(app, x);
         });
+        
+        if(!angular.module("ngRoute"))
+        {
+            app.config(['$routeProvider', function($routeProvider: ng.route.IRouteProvider){
+                config.controllers.forEach(x => {
+                    var controllerName = this.getTargetName(x);
+                    var controllerConfig: IControllerConfiguration = Reflect.getMetadata(metadataTypes.controllerConfig, x);
+                    
+                    var path = URI(config.route)
+                                .directory(controllerConfig.route.path)
+                                .path();
+                                
+                    $routeProvider.when(path, {
+                        caseInsensitiveMatch: controllerConfig.route.caseInsensitiveMatch,
+                        controller: controllerName,
+                        controllerAs: controllerConfig.route.controllerAs,
+                        name: controllerName,
+                        redirectTo: controllerConfig.route.redirectTo,
+                        reloadOnSearch: controllerConfig.route.reloadOnSearch,
+                        resolve: controllerConfig.route.resolve,
+                        template: controllerConfig.route.template,
+                        templateUrl: controllerConfig.route.templateUrl
+                    });
+                });
+            }]);
+        }
     }
 
     private configureProviders(app: ng.IModule, config: IModuleConfiguration) {

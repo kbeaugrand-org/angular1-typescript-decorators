@@ -1,10 +1,10 @@
-﻿import { IDirectiveConfiguration, IModuleConfiguration } from './DecoratorConfigs';
+﻿import { IDirectiveConfiguration, IControllerConfiguration, IModuleConfiguration } from './DecoratorConfigs';
 import { ModuleConfigurator } from './ModuleConfigurator';
 import { Injector } from './Injector';
 
-export function Controller() {
+export function Controller(config?: IControllerConfiguration) {
     return function (target: any) {
-        ModuleConfigurator.setController(target);
+        ModuleConfigurator.setController(target, config);
         return target;
     };
 }
