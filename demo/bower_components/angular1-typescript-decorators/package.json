@@ -1,0 +1,31 @@
+{
+  "name": "angular1-typescript-decorators",
+  "version": "1.0.0",
+  "description": "Write your Angular1 App with Typescript using Decorators",
+  "main": "gulp.js",
+  "dependencies": {
+    "gulp-uglify": "^1.5.3",
+    "lodash": "^4.11.0",
+    "reflect-metadata": "^0.1.3",
+    "tsc": "^1.20150623.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kbeaugrand/angular1-typescript-decorators.git"
+  },
+  "keywords": [
+    "Angular1",
+    "Typescript",
+    "Decorators"
+  ],
+  "author": "Kevin BEAUGRAND <kbeaugrand@ntic-infos.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kbeaugrand/angular1-typescript-decorators/issues"
+  },
+  "homepage": "https://github.com/kbeaugrand/angular1-typescript-decorators#readme"
+}

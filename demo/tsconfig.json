@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+     "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5",
+    "module": "system"
+  },
+  "exclude": [
+    "node_modules",
+    "bower_components"
+  ]
+}

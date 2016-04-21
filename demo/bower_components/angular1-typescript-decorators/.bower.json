@@ -1,0 +1,51 @@
+{
+  "name": "angular1-typescript-decorators",
+  "homepage": "https://github.com/kbeaugrand/angular1-typescript-decorators",
+  "authors": [
+    "Kevin BEAUGRAND <kbeaugrand@ntic-infos.net>"
+  ],
+  "description": "Write your Angular 1 app in the Angular 2 way using Typescript",
+  "main": [
+    "dist/DecoratorConfig.d.ts",
+    "dist/DecoratorConfig.js",
+    "dist/Decorators.d.ts",
+    "dist/Decorators.js",
+    "dist/Injector.d.ts",
+    "dist/Injector.js",
+    "dist/ModuleConfigurator.d.ts",
+    "dist/ModuleConfigurator.js",
+    "dist/Tools.d.ts",
+    "dist/Tools.js"
+  ],
+  "moduleType": [],
+  "keywords": [
+    "Angular1",
+    "typescript",
+    "decorators"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src",
+    "typings",
+    ".vscode"
+  ],
+  "dependencies": {
+    "angular": "^1.5.3",
+    "reflect-metadata": "^0.1.3"
+  },
+  "_release": "f4aff2522f",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "f4aff2522f4ad1117408e6232611b2462a78fe99"
+  },
+  "_source": "https://github.com/kbeaugrand/angular1-typescript-decorators.git",
+  "_target": "*",
+  "_originalSource": "angular1-typescript-decorators",
+  "_direct": true
+}
