@@ -2,9 +2,9 @@ System.register(['./ModuleConfigurator'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var ModuleConfigurator_1;
-    function Controller() {
+    function Controller(config) {
         return function (target) {
-            ModuleConfigurator_1.ModuleConfigurator.setController(target);
+            ModuleConfigurator_1.ModuleConfigurator.setController(target, config);
             return target;
         };
     }

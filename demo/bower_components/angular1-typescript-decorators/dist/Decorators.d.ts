@@ -1,5 +1,5 @@
-import { IDirectiveConfiguration, IModuleConfiguration } from './DecoratorConfigs';
-export declare function Controller(): (target: any) => any;
+import { IDirectiveConfiguration, IControllerConfiguration, IModuleConfiguration } from './DecoratorConfigs';
+export declare function Controller(config?: IControllerConfiguration): (target: any) => any;
 export declare function Directive(config?: IDirectiveConfiguration): (target: any) => any;
 export declare function DirectiveCompileFn(): (target: any, key: string, descriptor: any) => any;
 export declare function DirectiveLinkFn(): (target: any, key: string, descriptor: any) => any;

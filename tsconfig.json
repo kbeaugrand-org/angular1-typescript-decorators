@@ -17,7 +17,7 @@
     "noEmitOnError": true,
     "declaration": true,
     "removeComments": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "experimentalDecorators": true,
     "outDir": "dist/",
     "rootDir": "src/"    

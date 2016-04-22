@@ -1,4 +1,5 @@
-import { IModuleConfiguration, IDirectiveConfiguration } from './DecoratorConfigs';
+/// <reference path="../typings/tsd.d.ts" />
+import { IModuleConfiguration, IDirectiveConfiguration, IControllerConfiguration } from './DecoratorConfigs';
 export declare class ModuleConfigurator {
     private target;
     private module;
@@ -9,7 +10,7 @@ export declare class ModuleConfigurator {
     static setModuleConfig(target: any, configurator: any): void;
     static setModuleRun(target: any, runBlock: any): void;
     static setDirective(target: any, config?: IDirectiveConfiguration): void;
-    static setController(target: any, name?: string): void;
+    static setController(target: any, config?: IControllerConfiguration): void;
     static setService(target: any, name?: string): void;
     static setFactory(target: any, name?: string): void;
     static setFilter(target: any, name?: string): void;

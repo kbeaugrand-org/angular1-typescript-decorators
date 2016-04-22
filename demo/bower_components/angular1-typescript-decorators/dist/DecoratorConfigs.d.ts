@@ -1,5 +1,6 @@
 export interface IModuleConfiguration {
     name?: string;
+    route?: string;
     element?: string | Element | JQuery | Document;
     dependencies?: Array<string>;
     moduleDependencies?: Array<any>;
@@ -27,4 +28,19 @@ export interface IDirectiveConfiguration {
     transclude?: boolean | string | {
         [slot: string]: string;
     };
+}
+export interface IControllerRouteDefinition {
+    template?: string;
+    templateUrl?: string;
+    path?: string;
+    controllerAs?: string;
+    resolve?: any;
+    redirectTo?: string;
+    resolveAs?: string;
+    caseInsensitiveMatch?: boolean;
+    reloadOnSearch?: boolean;
+}
+export interface IControllerConfiguration {
+    name?: string;
+    route?: IControllerRouteDefinition;
 }
