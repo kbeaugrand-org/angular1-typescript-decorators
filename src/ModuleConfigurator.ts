@@ -179,12 +179,15 @@ export class ModuleConfigurator {
             this.addController(app, x);
         });
         
-        if(!angular.module("ngRoute"))
+        if(angular.module("ngRoute"))
         {
             app.config(['$routeProvider', function($routeProvider: ng.route.IRouteProvider){
                 config.controllers.forEach(x => {
                     var controllerName = this.getTargetName(x);
                     var controllerConfig: IControllerConfiguration = Reflect.getMetadata(metadataTypes.controllerConfig, x);
+                    
+                    if(!controllerConfig.route)
+                        return;
                     
                     var path = URI(config.route)
                                 .directory(controllerConfig.route.path)
