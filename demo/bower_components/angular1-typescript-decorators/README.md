@@ -63,7 +63,7 @@ class SomeDirective(){
 
 @Controller()
 class SomeController{
-    constructor(private $http: ng.IHttpService, private $timeout: ng.ITimeoutService, private $scope: ){ }
+    constructor(private $http: ng.IHttpService, private $timeout: ng.ITimeoutService, private $scope: ng.IScope){ }
     
     myCtrlFunc(){
         var $this = this;

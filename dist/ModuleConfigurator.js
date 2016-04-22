@@ -18,6 +18,7 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                 moduleConstant: 'module:constant',
                 moduleConfig: 'module:config',
                 moduleRun: 'module:run',
+                controllerConfig: 'controller:config',
                 directiveConfig: 'directive:config',
                 directiveCompile: 'directive:compileFn',
                 directiveLink: 'directive:link',
@@ -76,9 +77,9 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                     Injector_1.Injector.inject(target);
                     Reflect.defineMetadata(metadataTypes.directiveConfig, config, target);
                 };
-                ModuleConfigurator.setController = function (target, name) {
+                ModuleConfigurator.setController = function (target, config) {
                     Injector_1.Injector.inject(target);
-                    Reflect.defineMetadata(metadataTypes.targetName, name, target);
+                    Reflect.defineMetadata(metadataTypes.controllerConfig, config, target);
                 };
                 ModuleConfigurator.setService = function (target, name) {
                     Injector_1.Injector.inject(target);
@@ -102,7 +103,10 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                     Reflect.defineMetadata(metadataTypes.targetName, name, target);
                 };
                 ModuleConfigurator.prototype.addController = function (app, target) {
-                    var controllerName = this.getTargetName(target);
+                    var controllerConfig = Reflect.getMetadata(metadataTypes.controllerConfig, target);
+                    var controllerName = controllerConfig.name;
+                    if (!controllerName)
+                        controllerName = this.getTargetName(target);
                     console.debug("Registering Controller '" + controllerName + "'");
                     app.controller(controllerName, target);
                     return controllerName;
@@ -147,6 +151,29 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                     config.controllers.forEach(function (x) {
                         _this.addController(app, x);
                     });
+                    if (!angular.module("ngRoute")) {
+                        app.config(['$routeProvider', function ($routeProvider) {
+                                var _this = this;
+                                config.controllers.forEach(function (x) {
+                                    var controllerName = _this.getTargetName(x);
+                                    var controllerConfig = Reflect.getMetadata(metadataTypes.controllerConfig, x);
+                                    var path = URI(config.route)
+                                        .directory(controllerConfig.route.path)
+                                        .path();
+                                    $routeProvider.when(path, {
+                                        caseInsensitiveMatch: controllerConfig.route.caseInsensitiveMatch,
+                                        controller: controllerName,
+                                        controllerAs: controllerConfig.route.controllerAs,
+                                        name: controllerName,
+                                        redirectTo: controllerConfig.route.redirectTo,
+                                        reloadOnSearch: controllerConfig.route.reloadOnSearch,
+                                        resolve: controllerConfig.route.resolve,
+                                        template: controllerConfig.route.template,
+                                        templateUrl: controllerConfig.route.templateUrl
+                                    });
+                                });
+                            }]);
+                    }
                 };
                 ModuleConfigurator.prototype.configureProviders = function (app, config) {
                     var _this = this;
