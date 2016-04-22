@@ -146,6 +146,7 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                 };
                 ModuleConfigurator.prototype.configureControllers = function (app, config) {
                     var _this = this;
+                    var $this = this;
                     if (!config.controllers || !config.controllers.length)
                         return;
                     config.controllers.forEach(function (x) {
@@ -153,9 +154,8 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                     });
                     if (angular.module("ngRoute")) {
                         app.config(['$routeProvider', function ($routeProvider) {
-                                var _this = this;
                                 config.controllers.forEach(function (x) {
-                                    var controllerName = _this.getTargetName(x);
+                                    var controllerName = $this.getTargetName(x);
                                     var controllerConfig = Reflect.getMetadata(metadataTypes.controllerConfig, x);
                                     if (!controllerConfig.route)
                                         return;

@@ -151,12 +151,14 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                     config.controllers.forEach(function (x) {
                         _this.addController(app, x);
                     });
-                    if (!angular.module("ngRoute")) {
+                    if (angular.module("ngRoute")) {
                         app.config(['$routeProvider', function ($routeProvider) {
                                 var _this = this;
                                 config.controllers.forEach(function (x) {
                                     var controllerName = _this.getTargetName(x);
                                     var controllerConfig = Reflect.getMetadata(metadataTypes.controllerConfig, x);
+                                    if (!controllerConfig.route)
+                                        return;
                                     var path = URI(config.route)
                                         .directory(controllerConfig.route.path)
                                         .path();
@@ -247,4 +249,3 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
         }
     }
 });
-//# sourceMappingURL=ModuleConfigurator.js.map

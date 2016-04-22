@@ -172,6 +172,7 @@ export class ModuleConfigurator {
     }
 
     private configureControllers(app: ng.IModule, config: IModuleConfiguration) {
+        var $this = this;
         if (!config.controllers || !config.controllers.length)
             return;
 
@@ -183,7 +184,7 @@ export class ModuleConfigurator {
         {
             app.config(['$routeProvider', function($routeProvider: ng.route.IRouteProvider){
                 config.controllers.forEach(x => {
-                    var controllerName = this.getTargetName(x);
+                    var controllerName = $this.getTargetName(x);
                     var controllerConfig: IControllerConfiguration = Reflect.getMetadata(metadataTypes.controllerConfig, x);
                     
                     if(!controllerConfig.route)
