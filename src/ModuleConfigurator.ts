@@ -172,20 +172,23 @@ export class ModuleConfigurator {
     }
 
     private configureControllers(app: ng.IModule, config: IModuleConfiguration) {
-        var $this = this;
+       
         if (!config.controllers || !config.controllers.length)
             return;
 
-        config.controllers.forEach(x => {
-            this.addController(app, x);
+        var controllers = config.controllers.map(x => {
+            return {
+               controllerName: this.addController(app, x),
+               target: x
+            };
         });
         
         if(angular.module("ngRoute"))
-        {
+        { 
             app.config(['$routeProvider', function($routeProvider: ng.route.IRouteProvider){
-                config.controllers.forEach(x => {
-                    var controllerName = $this.getTargetName(x);
-                    var controllerConfig: IControllerConfiguration = Reflect.getMetadata(metadataTypes.controllerConfig, x);
+                controllers.forEach(x => {
+                    var controllerName = x.controllerName;
+                    var controllerConfig: IControllerConfiguration = Reflect.getMetadata(metadataTypes.controllerConfig, x.target);
                     
                     if(!controllerConfig.route)
                         return;
