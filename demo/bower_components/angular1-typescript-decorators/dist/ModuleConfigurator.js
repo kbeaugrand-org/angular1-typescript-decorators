@@ -104,7 +104,9 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                 };
                 ModuleConfigurator.prototype.addController = function (app, target) {
                     var controllerConfig = Reflect.getMetadata(metadataTypes.controllerConfig, target);
-                    var controllerName = controllerConfig.name;
+                    var controllerName = '';
+                    if (controllerConfig && controllerConfig.name)
+                        controllerName = controllerConfig.name;
                     if (!controllerName)
                         controllerName = this.getTargetName(target);
                     console.debug("Registering Controller '" + controllerName + "'");
