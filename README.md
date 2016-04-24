@@ -229,6 +229,71 @@ Angular typescripts decorators contains also a ```Log``` decorator that could be
 
 At this time the Log decorator doesn't work for injected methods like constructors, ModuleRun methods, DirectiveLinkFn, and so on. I 'll work on it in order to be able to add some log in anything.
 
+## using ngRoute    
+While using ngRoute, you can configure your routes by two ways : 
+
+### On the module (using ModuleConfig decorator and $routeProvider
+```ts
+interface IMyControllerScope extends ng.IScope{
+    text: string
+}
+
+@Controller()
+export class MyController{
+    constructor(private $http: ng.IHttpService, private $timeout: ng.ITimeoutService, private $scope: IMyControllerScope ){
+        this.$scope.text = "Hello world!";        
+     }
+}
+
+@Module({
+    name:'angularDemo',
+    element: document,
+    dependencies: ['ngRoute'],
+    controllers: [MyController],
+    config: { strictDi: true }
+})
+class MyModule {
+    @ModuleConfig()
+    config($routeProvider: ng.route.IRouteProvider){
+        $routeProvider.when('/', {
+           controller: 'myController',
+           templateUrl: '/templates/home.html' 
+        });        
+    }
+}
+``` 
+
+### On the controller itself (using module routeBase and controller path).
+
+```ts
+interface IMyControllerScope extends ng.IScope{
+    text: string
+}
+
+@Controller({
+    route: {
+        path: '/',
+        templateUrl: '/templates/home.html'
+    }
+})
+export class MyController{
+    constructor(private $http: ng.IHttpService, private $timeout: ng.ITimeoutService, private $scope: IMyControllerScope ){
+        this.$scope.text = "Hello world!";        
+     }
+}
+
+@Module({
+    name:'angularDemo',
+    element: document,
+    route: '/',
+    dependencies: ['ngRoute'],
+    controllers: [MyController],
+    config: { strictDi: true }
+})
+class MyModule {
+}
+``` 
+
 ## License
 
 [MIT License](http://ilee.mit-license.org)
