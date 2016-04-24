@@ -156,30 +156,33 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                             target: x
                         };
                     });
-                    if (angular.module("ngRoute")) {
-                        app.config(['$routeProvider', function ($routeProvider) {
-                                controllers.forEach(function (x) {
-                                    var controllerName = x.controllerName;
-                                    var controllerConfig = Reflect.getMetadata(metadataTypes.controllerConfig, x.target);
-                                    if (!controllerConfig.route)
-                                        return;
-                                    var path = URI(config.route)
-                                        .directory(controllerConfig.route.path)
-                                        .path();
-                                    $routeProvider.when(path, {
-                                        caseInsensitiveMatch: controllerConfig.route.caseInsensitiveMatch,
-                                        controller: controllerName,
-                                        controllerAs: controllerConfig.route.controllerAs,
-                                        name: controllerName,
-                                        redirectTo: controllerConfig.route.redirectTo,
-                                        reloadOnSearch: controllerConfig.route.reloadOnSearch,
-                                        resolve: controllerConfig.route.resolve,
-                                        template: controllerConfig.route.template,
-                                        templateUrl: controllerConfig.route.templateUrl
+                    try {
+                        if (angular.module("ngRoute")) {
+                            app.config(['$routeProvider', function ($routeProvider) {
+                                    controllers.forEach(function (x) {
+                                        var controllerName = x.controllerName;
+                                        var controllerConfig = Reflect.getMetadata(metadataTypes.controllerConfig, x.target);
+                                        if (!controllerConfig.route)
+                                            return;
+                                        var path = URI(config.route)
+                                            .directory(controllerConfig.route.path)
+                                            .path();
+                                        $routeProvider.when(path, {
+                                            caseInsensitiveMatch: controllerConfig.route.caseInsensitiveMatch,
+                                            controller: controllerName,
+                                            controllerAs: controllerConfig.route.controllerAs,
+                                            name: controllerName,
+                                            redirectTo: controllerConfig.route.redirectTo,
+                                            reloadOnSearch: controllerConfig.route.reloadOnSearch,
+                                            resolve: controllerConfig.route.resolve,
+                                            template: controllerConfig.route.template,
+                                            templateUrl: controllerConfig.route.templateUrl
+                                        });
                                     });
-                                });
-                            }]);
+                                }]);
+                        }
                     }
+                    catch (e) { }
                 };
                 ModuleConfigurator.prototype.configureProviders = function (app, config) {
                     var _this = this;
