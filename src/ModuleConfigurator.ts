@@ -186,34 +186,37 @@ export class ModuleConfigurator {
             };
         });
         
-        if(angular.module("ngRoute"))
-        { 
-            app.config(['$routeProvider', function($routeProvider: ng.route.IRouteProvider){
-                controllers.forEach(x => {
-                    var controllerName = x.controllerName;
-                    var controllerConfig: IControllerConfiguration = Reflect.getMetadata(metadataTypes.controllerConfig, x.target);
-                    
-                    if(!controllerConfig.route)
-                        return;
-                    
-                    var path = URI(config.route)
-                                .directory(controllerConfig.route.path)
-                                .path();
-                                
-                    $routeProvider.when(path, {
-                        caseInsensitiveMatch: controllerConfig.route.caseInsensitiveMatch,
-                        controller: controllerName,
-                        controllerAs: controllerConfig.route.controllerAs,
-                        name: controllerName,
-                        redirectTo: controllerConfig.route.redirectTo,
-                        reloadOnSearch: controllerConfig.route.reloadOnSearch,
-                        resolve: controllerConfig.route.resolve,
-                        template: controllerConfig.route.template,
-                        templateUrl: controllerConfig.route.templateUrl
+        try{
+            if(angular.module("ngRoute"))
+            { 
+                app.config(['$routeProvider', function($routeProvider: ng.route.IRouteProvider){
+                    controllers.forEach(x => {
+                        var controllerName = x.controllerName;
+                        var controllerConfig: IControllerConfiguration = Reflect.getMetadata(metadataTypes.controllerConfig, x.target);
+                        
+                        if(!controllerConfig.route)
+                            return;
+                        
+                        var path = URI(config.route)
+                                    .directory(controllerConfig.route.path)
+                                    .path();
+                                    
+                        $routeProvider.when(path, {
+                            caseInsensitiveMatch: controllerConfig.route.caseInsensitiveMatch,
+                            controller: controllerName,
+                            controllerAs: controllerConfig.route.controllerAs,
+                            name: controllerName,
+                            redirectTo: controllerConfig.route.redirectTo,
+                            reloadOnSearch: controllerConfig.route.reloadOnSearch,
+                            resolve: controllerConfig.route.resolve,
+                            template: controllerConfig.route.template,
+                            templateUrl: controllerConfig.route.templateUrl
+                        });
                     });
-                });
-            }]);
+                }]);
+            }
         }
+        catch(e) {}
     }
 
     private configureProviders(app: ng.IModule, config: IModuleConfiguration) {
