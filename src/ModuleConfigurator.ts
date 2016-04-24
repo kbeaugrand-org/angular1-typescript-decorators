@@ -120,7 +120,10 @@ export class ModuleConfigurator {
 
     private addController(app: ng.IModule, target: any) {
         var controllerConfig = Reflect.getMetadata(metadataTypes.controllerConfig, target);
-        var controllerName = controllerConfig.name;
+        var controllerName = '';
+        
+        if(controllerConfig && controllerConfig.name)
+             controllerName = controllerConfig.name;
 
         if (!controllerName)
             controllerName = this.getTargetName(target);
