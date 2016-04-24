@@ -40,11 +40,11 @@
     "reflect-metadata": "^0.1.3",
     "urijs": "^1.17.1"
   },
-  "_release": "29772cff60",
+  "_release": "0931b2276f",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "29772cff60030f9a8a48b131533188954423055c"
+    "commit": "0931b2276f287e45ae337b656fdc1ebdc2b1c6c3"
   },
   "_source": "https://github.com/kbeaugrand/angular1-typescript-decorators.git",
   "_target": "*",
