@@ -32,7 +32,8 @@
     "tests",
     "src",
     "demo",
-    ".vscode"
+    ".vscode",
+    "tsconfig.json"
   ],
   "dependencies": {
     "angular": "^1.5.3",
