@@ -32,18 +32,19 @@
     "tests",
     "src",
     "demo",
-    ".vscode"
+    ".vscode",
+    "tsconfig.json"
   ],
   "dependencies": {
     "angular": "^1.5.3",
     "reflect-metadata": "^0.1.3",
     "urijs": "^1.17.1"
   },
-  "_release": "98eb7a768a",
+  "_release": "109f9144c3",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "98eb7a768aa5a35571a9609ba712733298b8183e"
+    "commit": "109f9144c34e438d45522d2568583e13a452726f"
   },
   "_source": "https://github.com/kbeaugrand/angular1-typescript-decorators.git",
   "_target": "*",
