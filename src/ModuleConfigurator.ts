@@ -31,7 +31,7 @@ export class ModuleConfigurator {
         var depedencies = module.dependencies;
 
         if (module.moduleDependencies && module.moduleDependencies.length)
-            module = depedencies.concat(module.moduleDependencies.map(x => Reflect.getMetadata(metadataTypes.targetName, x)));
+            depedencies = depedencies.concat(module.moduleDependencies.map(x => Reflect.getMetadata(metadataTypes.targetName, x)));
 
         var app = angular.module(this.moduleName, depedencies);
 
