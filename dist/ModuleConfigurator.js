@@ -35,7 +35,7 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                         module.dependencies = [];
                     var depedencies = module.dependencies;
                     if (module.moduleDependencies && module.moduleDependencies.length)
-                        module = depedencies.concat(module.moduleDependencies.map(function (x) { return Reflect.getMetadata(metadataTypes.targetName, x); }));
+                        depedencies = depedencies.concat(module.moduleDependencies.map(function (x) { return Reflect.getMetadata(metadataTypes.targetName, x); }));
                     var app = angular.module(this.moduleName, depedencies);
                     this.configureValues(app, target);
                     this.configureFactories(app, module);
