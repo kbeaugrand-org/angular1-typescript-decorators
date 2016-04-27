@@ -50,7 +50,7 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                     var runBlock = Reflect.getMetadata(metadataTypes.moduleRun, target);
                     if (runBlock)
                         app.run(runBlock);
-                    if (angular.element)
+                    if (angular.element && module.element)
                         angular.bootstrap(module.element, [this.moduleName], module.config);
                 }
                 ModuleConfigurator.setValue = function (target, valueName, value) {
