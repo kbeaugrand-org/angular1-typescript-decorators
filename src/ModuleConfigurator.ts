@@ -51,7 +51,7 @@ export class ModuleConfigurator {
         if (runBlock)
             app.run(runBlock);
 
-        if (angular.element)
+        if (angular.element && module.element)
             angular.bootstrap(module.element, [this.moduleName], module.config);
     }
 
