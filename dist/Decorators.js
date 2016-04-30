@@ -102,7 +102,7 @@ System.register(['./ModuleConfigurator'], function(exports_1, context_1) {
                     args[_i - 0] = arguments[_i];
                 }
                 var a = args.map(function (a) { return JSON.stringify(a, function (key, value) {
-                    if (key.indexOf('$$') == 0)
+                    if (key.indexOf('$') == 0)
                         return undefined;
                     return value;
                 }); }).join();

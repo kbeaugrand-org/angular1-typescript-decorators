@@ -104,7 +104,8 @@ export function Log() {
         //editing the descriptor/value parameter
         descriptor.value = function (...args: any[]) {
             var a = args.map(a => JSON.stringify(a, (key, value) => {
-                if(key.indexOf('$$') == 0)  
+                //Remove all Angular properties from serialization => Circular references risk.
+                if(key.indexOf('$') == 0)  
                     return undefined;
                     
                 return value; 
