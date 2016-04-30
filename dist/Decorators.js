@@ -101,7 +101,11 @@ System.register(['./ModuleConfigurator'], function(exports_1, context_1) {
                 for (var _i = 0; _i < arguments.length; _i++) {
                     args[_i - 0] = arguments[_i];
                 }
-                var a = args.map(function (a) { return JSON.stringify(a); }).join();
+                var a = args.map(function (a) { return JSON.stringify(a, function (key, value) {
+                    if (key.indexOf('$$') == 0)
+                        return undefined;
+                    return value;
+                }); }).join();
                 var result = originalMethod.apply(this, args);
                 var r = JSON.stringify(result);
                 console.log("Call: " + key + "(" + a + ") => " + r);
