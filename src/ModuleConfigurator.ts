@@ -262,19 +262,7 @@ export class ModuleConfigurator {
             if (!directiveConfig)
                 return;
 
-            var directive: ng.IDirective = {
-                restrict: directiveConfig.restrict,
-                controllerAs: directiveConfig.controllerAs,
-                multiElement: directiveConfig.multiElement,
-                priority: directiveConfig.priority,
-                name: directiveConfig.name,
-                scope: directiveConfig.scope,
-                template: directiveConfig.template,
-                templateNamespace: directiveConfig.templateNamespace,
-                templateUrl: directiveConfig.templateUrl,
-                terminal: directiveConfig.terminal,
-                transclude: directiveConfig.transclude
-            };
+            var directive: ng.IDirective = angular.extend({}, directiveConfig);
 
             if (directiveConfig.controller)
                 directive.controller = this.addController(app, directiveConfig.controller);

@@ -222,19 +222,7 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                         var linkFn = Reflect.getMetadata(metadataTypes.directiveLink, target);
                         if (!directiveConfig)
                             return;
-                        var directive = {
-                            restrict: directiveConfig.restrict,
-                            controllerAs: directiveConfig.controllerAs,
-                            multiElement: directiveConfig.multiElement,
-                            priority: directiveConfig.priority,
-                            name: directiveConfig.name,
-                            scope: directiveConfig.scope,
-                            template: directiveConfig.template,
-                            templateNamespace: directiveConfig.templateNamespace,
-                            templateUrl: directiveConfig.templateUrl,
-                            terminal: directiveConfig.terminal,
-                            transclude: directiveConfig.transclude
-                        };
+                        var directive = angular.extend({}, directiveConfig);
                         if (directiveConfig.controller)
                             directive.controller = _this.addController(app, directiveConfig.controller);
                         if (compileFn)
