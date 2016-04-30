@@ -103,7 +103,12 @@ export function Log() {
 
         //editing the descriptor/value parameter
         descriptor.value = function (...args: any[]) {
-            var a = args.map(a => JSON.stringify(a)).join();
+            var a = args.map(a => JSON.stringify(a, (key, value) => {
+                if(key.indexOf('$$') == 0)  
+                    return undefined;
+                    
+                return value; 
+            })).join();
             // note usage of originalMethod here
             var result = originalMethod.apply(this, args);
             var r = JSON.stringify(result);
