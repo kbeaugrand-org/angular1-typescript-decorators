@@ -237,8 +237,8 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                         if (!directiveName)
                             directiveName = _this.getTargetName(target);
                         console.debug("Registering Directive '" + directiveName + "'");
-                        app.directive(directiveName, ['$inject', function ($inject) {
-                                var instance = $inject.instantiate(target);
+                        app.directive(directiveName, ['$inject', function ($injector) {
+                                var instance = $injector.instantiate(target);
                                 var directiveInstanceDescriptor = angular.copy(directive);
                                 directiveInstanceDescriptor.link = directiveInstanceDescriptor.link.bind(instance);
                                 directiveInstanceDescriptor.compile = directiveInstanceDescriptor.compile.bind(instance);

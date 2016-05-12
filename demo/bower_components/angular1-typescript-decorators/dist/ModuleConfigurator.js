@@ -22,6 +22,7 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                 directiveConfig: 'directive:config',
                 directiveCompile: 'directive:compileFn',
                 directiveLink: 'directive:link',
+                filterFn: 'filter:function'
             };
             ModuleConfigurator = (function () {
                 function ModuleConfigurator(target, module) {
@@ -92,6 +93,9 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                 ModuleConfigurator.setFilter = function (target, name) {
                     Injector_1.Injector.inject(target);
                     Reflect.defineMetadata(metadataTypes.targetName, name, target);
+                };
+                ModuleConfigurator.setFilterFn = function (target, name) {
+                    Reflect.defineMetadata(metadataTypes.filterFn, name, target);
                 };
                 ModuleConfigurator.setDirectiveCompile = function (target, compile) {
                     Reflect.defineMetadata(metadataTypes.directiveCompile, compile, target);
@@ -233,9 +237,13 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                         if (!directiveName)
                             directiveName = _this.getTargetName(target);
                         console.debug("Registering Directive '" + directiveName + "'");
-                        app.directive(directiveName, function () {
-                            return directive;
-                        });
+                        app.directive(directiveName, ['$inject', function ($inject) {
+                                var instance = $inject.instantiate(target);
+                                var directiveInstanceDescriptor = angular.copy(directive);
+                                directiveInstanceDescriptor.link = directiveInstanceDescriptor.link.bind(instance);
+                                directiveInstanceDescriptor.compile = directiveInstanceDescriptor.compile.bind(instance);
+                                return directiveInstanceDescriptor;
+                            }]);
                     });
                 };
                 return ModuleConfigurator;

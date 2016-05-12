@@ -14,6 +14,7 @@ export declare class ModuleConfigurator {
     static setService(target: any, name?: string): void;
     static setFactory(target: any, name?: string): void;
     static setFilter(target: any, name?: string): void;
+    static setFilterFn(target: any, name?: string): void;
     static setDirectiveCompile(target: any, compile: any): void;
     static setDirectiveLink(target: any, compile: any): void;
     static setProvider(target: any, name?: string): void;

@@ -1,4 +1,4 @@
-import { Directive } from '../../bower_components/angular1-typescript-decorators/dist/Decorators';
+import { Directive, DirectiveLinkFn } from '../../bower_components/angular1-typescript-decorators/dist/Decorators';
 import { MyDirectiveController } from '../Controllers/MyDirectiveController';
 
 @Directive({
@@ -9,4 +9,13 @@ import { MyDirectiveController } from '../Controllers/MyDirectiveController';
         text: "="
     },
 })
-export class MyDirective{}
+export class MyDirective{
+    
+    constructor(private $http: ng.IHttpService){ }
+   
+    @DirectiveLinkFn()
+    link(){
+        debugger;
+    }
+    
+}

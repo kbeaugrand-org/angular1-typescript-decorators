@@ -28,6 +28,9 @@ export interface IDirectiveConfiguration {
     transclude?: boolean | string | {
         [slot: string]: string;
     };
+    require?: string | string[] | {
+        [controller: string]: string;
+    };
 }
 export interface IControllerRouteDefinition {
     template?: string;
