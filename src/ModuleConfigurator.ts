@@ -13,6 +13,7 @@ var metadataTypes = {
     directiveConfig: 'directive:config',
     directiveCompile: 'directive:compileFn',
     directiveLink: 'directive:link',
+    filterFn: 'filter:function'
 }
 
 export class ModuleConfigurator {
@@ -104,6 +105,10 @@ export class ModuleConfigurator {
     static setFilter(target: any, name?: string) {
         Injector.inject(target);
         Reflect.defineMetadata(metadataTypes.targetName, name, target);
+    }
+    
+    static setFilterFn(target: any, name?: string) {
+        Reflect.defineMetadata(metadataTypes.filterFn, name, target);
     }
 
     static setDirectiveCompile(target: any, compile: any) {
@@ -256,8 +261,8 @@ export class ModuleConfigurator {
 
         config.directives.forEach(target => {
             var directiveConfig: IDirectiveConfiguration = Reflect.getMetadata(metadataTypes.directiveConfig, target);
-            var compileFn = Reflect.getMetadata(metadataTypes.directiveCompile, target);
-            var linkFn = Reflect.getMetadata(metadataTypes.directiveLink, target);
+            var compileFn: ng.IDirectiveCompileFn = Reflect.getMetadata(metadataTypes.directiveCompile, target);
+            var linkFn: ng.IDirectiveLinkFn = Reflect.getMetadata(metadataTypes.directiveLink, target);
 
             if (!directiveConfig)
                 return;
@@ -268,7 +273,7 @@ export class ModuleConfigurator {
                 directive.controller = this.addController(app, directiveConfig.controller);
 
             if (compileFn)
-                directive.compile = compileFn
+                directive.compile = compileFn;
 
             if (linkFn)
                 directive.link = linkFn;
@@ -279,9 +284,16 @@ export class ModuleConfigurator {
                 directiveName = this.getTargetName(target);
 
             console.debug(`Registering Directive '${directiveName}'`);
-            app.directive(directiveName, function () {
-                return directive;
-            });
+            
+            app.directive(directiveName, ['$inject', function ($inject: ng.auto.IInjectorService) {
+                var instance = $inject.instantiate(target)
+                var directiveInstanceDescriptor =  angular.copy(directive);
+                
+                directiveInstanceDescriptor.link = (<any>directiveInstanceDescriptor).link.bind(instance);
+                directiveInstanceDescriptor.compile = (<any>directiveInstanceDescriptor).compile.bind(instance);
+                
+                return directiveInstanceDescriptor;
+            }]);
         });
     }
 }
