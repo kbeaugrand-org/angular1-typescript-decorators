@@ -285,7 +285,7 @@ export class ModuleConfigurator {
 
             console.debug(`Registering Directive '${directiveName}'`);
             
-            app.directive(directiveName, ['$inject', function ($injector: ng.auto.IInjectorService) {
+            app.directive(directiveName, ['$injector', function ($injector: ng.auto.IInjectorService) {
                 var instance = $injector.instantiate(target)
                 var directiveInstanceDescriptor =  angular.copy(directive);
                 
