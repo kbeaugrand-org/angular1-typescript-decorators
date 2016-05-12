@@ -79,6 +79,13 @@ System.register(['./ModuleConfigurator'], function(exports_1, context_1) {
         };
     }
     exports_1("Filter", Filter);
+    function FilterFn() {
+        return function (target, key, descriptor) {
+            ModuleConfigurator_1.ModuleConfigurator.setFilterFn(target.constructor, descriptor.value);
+            return descriptor;
+        };
+    }
+    exports_1("FilterFn", FilterFn);
     function Service(name) {
         return function (target) {
             ModuleConfigurator_1.ModuleConfigurator.setService(target, name);

@@ -1,8 +1,12 @@
-import { Filter, Filter } from '../../bower_components/angular1-typescript-decorators/dist/Decorators';
+import { Filter, FilterFn } from '../../bower_components/angular1-typescript-decorators/dist/Decorators';
 
-
+@Filter('myFilter')
 export class MyFilter{
     
-    constructor(private $http: ng.IHttpService){ }
+   constructor(private filterValue: number){ }
    
+   @FilterFn()
+   filter(input){
+       return `${input} ${ this.filterValue }`;
+   }
 }

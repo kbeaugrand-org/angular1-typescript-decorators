@@ -254,7 +254,7 @@ export class ModuleConfigurator {
             
             if(!Reflect.getMetadata(metadataTypes.filterFn, x))
             {
-                console.error(`Cannot register Filter:'${filterName}' because FilterFn has not provided!`);
+                console.error(`Cannot register Filter:'${filterName}' because FilterFn has not been provided!`);
                 return;
             }
             

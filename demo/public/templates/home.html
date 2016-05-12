@@ -3,4 +3,6 @@
     <button data-ng-click="ctrl.clickAction()">
         Click me! <span data-ng-bind="ctrl.text"></span>
     </button>
+    <br/>
+    <span>{{ 'my filter value is' | myFilter }}</span>
 </div>

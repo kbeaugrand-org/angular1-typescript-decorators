@@ -214,7 +214,7 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                     config.filters.forEach(function (x) {
                         var filterName = _this.getTargetName(x);
                         if (!Reflect.getMetadata(metadataTypes.filterFn, x)) {
-                            console.error("Cannot register Filter:'" + filterName + "' because FilterFn has not provided!");
+                            console.error("Cannot register Filter:'" + filterName + "' because FilterFn has not been provided!");
                             return;
                         }
                         console.debug("Registering Filter '" + filterName + "'");
