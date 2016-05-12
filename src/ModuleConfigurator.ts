@@ -289,8 +289,11 @@ export class ModuleConfigurator {
                 var instance = $injector.instantiate(target)
                 var directiveInstanceDescriptor =  angular.copy(directive);
                 
-                directiveInstanceDescriptor.link = (<any>directiveInstanceDescriptor).link.bind(instance);
-                directiveInstanceDescriptor.compile = (<any>directiveInstanceDescriptor).compile.bind(instance);
+                if(directiveInstanceDescriptor.link)
+                    directiveInstanceDescriptor.link = (<any>directiveInstanceDescriptor).link.bind(instance);
+                    
+                if(directiveInstanceDescriptor.compile)
+                    directiveInstanceDescriptor.compile = (<any>directiveInstanceDescriptor).compile.bind(instance);
                 
                 return directiveInstanceDescriptor;
             }]);
