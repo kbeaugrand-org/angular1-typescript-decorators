@@ -212,8 +212,17 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                     if (!config.filters || !config.filters.length)
                         return;
                     config.filters.forEach(function (x) {
-                        console.debug("Registering Filter '" + _this.getTargetName(x) + "'");
-                        app.filter(_this.getTargetName(x), x);
+                        var filterName = _this.getTargetName(x);
+                        if (!Reflect.getMetadata(metadataTypes.filterFn, x)) {
+                            console.error("Cannot register Filter:'" + filterName + "' because FilterFn has not provided!");
+                            return;
+                        }
+                        console.debug("Registering Filter '" + filterName + "'");
+                        app.filter(filterName, ['$injector', function ($injector) {
+                                var instance = $injector.instantiate(x);
+                                var filterFn = Reflect.getMetadata(metadataTypes.filterFn, x);
+                                return filterFn.bind(instance);
+                            }]);
                     });
                 };
                 ModuleConfigurator.prototype.configureDirectives = function (app, config) {

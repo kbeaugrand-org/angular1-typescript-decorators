@@ -79,6 +79,13 @@ export function Filter(name?: string) {
     };
 }
 
+export function FilterFn() {
+    return function (target: any, key: string, descriptor: any) {
+        ModuleConfigurator.setFilterFn(target.constructor, descriptor.value);
+        return descriptor;
+    }
+}
+
 export function Service(name?: string) {
     return function (target: any) {
         ModuleConfigurator.setService(target, name);

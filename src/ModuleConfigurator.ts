@@ -250,8 +250,22 @@ export class ModuleConfigurator {
             return;
 
         config.filters.forEach(x => {
-            console.debug(`Registering Filter '${this.getTargetName(x)}'`);
-            app.filter(this.getTargetName(x), x);
+            var filterName = this.getTargetName(x);
+            
+            if(!Reflect.getMetadata(metadataTypes.filterFn, x))
+            {
+                console.error(`Cannot register Filter:'${filterName}' because FilterFn has not provided!`);
+                return;
+            }
+            
+            console.debug(`Registering Filter '${filterName}'`);
+            
+            app.filter(filterName, ['$injector', function($injector: ng.auto.IInjectorService){
+                var instance = $injector.instantiate(x);
+                var filterFn: ng.IFilterFilter = Reflect.getMetadata(metadataTypes.filterFn, x);
+               
+                return filterFn.bind(instance);
+            }]);
         });
     }
 

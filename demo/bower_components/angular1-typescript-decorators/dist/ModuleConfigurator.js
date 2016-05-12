@@ -240,8 +240,10 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                         app.directive(directiveName, ['$injector', function ($injector) {
                                 var instance = $injector.instantiate(target);
                                 var directiveInstanceDescriptor = angular.copy(directive);
-                                directiveInstanceDescriptor.link = directiveInstanceDescriptor.link.bind(instance);
-                                directiveInstanceDescriptor.compile = directiveInstanceDescriptor.compile.bind(instance);
+                                if (directiveInstanceDescriptor.link)
+                                    directiveInstanceDescriptor.link = directiveInstanceDescriptor.link.bind(instance);
+                                if (directiveInstanceDescriptor.compile)
+                                    directiveInstanceDescriptor.compile = directiveInstanceDescriptor.compile.bind(instance);
                                 return directiveInstanceDescriptor;
                             }]);
                     });
