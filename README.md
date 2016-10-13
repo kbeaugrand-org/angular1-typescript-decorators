@@ -151,7 +151,9 @@ interface IMyComponentScope extends ng.IScope{ }
     template: `My Component is loaded <button data-ng-click='$ctrl.click()'>Click me!</button>`
 })
 export class MyComponent{
-    constructor(private $http: ng.IHttpService, private $timeout: ng.ITimeoutService, private $scope: IMyComponentScope ){ }
+    constructor(private $http: ng.IHttpService, 
+                private $timeout: ng.ITimeoutService, 
+                private $scope: IMyComponentScope ){ }
 
     click(){
         alert('component  button clicked!')
@@ -165,7 +167,7 @@ import { Controller } from '../lib/angular1-typescript-decorators/dist/Decorator
 
 @Controller()
 export class SomeController{
-    constructor(private $http: ng.IHttpService, private $timeout: ng.ITimeoutService, private $scope: ){ }
+    constructor(private $http: ng.IHttpService, private $timeout: ng.ITimeoutService, private $scope: ng.IScope ){ }
     
     myCtrlFunc(){
         var $this = this;
