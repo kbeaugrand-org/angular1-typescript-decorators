@@ -1,0 +1,19 @@
+{
+  "name": "demo",
+  "homepage": "https://github.com/kbeaugrand/angular1-typescript-decorators",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "^1.5.8",
+    "angular": "^1.5.8",
+    "angular1-typescript-decorators": "*"
+  }
+}

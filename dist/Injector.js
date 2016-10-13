@@ -1,6 +1,4 @@
-System.register([], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register([], function(exports_1) {
     var Injector;
     function buildParamMetadataKey(index) {
         return ':p_' + index;
@@ -37,7 +35,7 @@ System.register([], function(exports_1, context_1) {
                     return metadata;
                 };
                 return Injector;
-            }());
+            })();
             exports_1("Injector", Injector);
         }
     }

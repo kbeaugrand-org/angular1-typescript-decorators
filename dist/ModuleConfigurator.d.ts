@@ -1,5 +1,5 @@
 /// <reference path="../typings/tsd.d.ts" />
-import { IModuleConfiguration, IDirectiveConfiguration, IControllerConfiguration } from './DecoratorConfigs';
+import { IModuleConfiguration, IDirectiveConfiguration, IControllerConfiguration, IComponentConfiguration } from './DecoratorConfigs';
 export declare class ModuleConfigurator {
     private target;
     private module;
@@ -18,6 +18,7 @@ export declare class ModuleConfigurator {
     static setDirectiveCompile(target: any, compile: any): void;
     static setDirectiveLink(target: any, compile: any): void;
     static setProvider(target: any, name?: string): void;
+    static setComponent(target: any, name?: string, config?: IComponentConfiguration): void;
     private addController(app, target);
     private getTargetName(target);
     private configureValues(app, target);
@@ -27,5 +28,6 @@ export declare class ModuleConfigurator {
     private configureProviders(app, config);
     private configureFactories(app, config);
     private configureFilters(app, config);
+    private configureComponents(app, config);
     private configureDirectives(app, config);
 }

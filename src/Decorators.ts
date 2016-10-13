@@ -1,4 +1,4 @@
-﻿import { IDirectiveConfiguration, IControllerConfiguration, IModuleConfiguration } from './DecoratorConfigs';
+﻿import { IDirectiveConfiguration, IControllerConfiguration, IModuleConfiguration, IComponentConfiguration } from './DecoratorConfigs';
 import { ModuleConfigurator } from './ModuleConfigurator';
 import { Injector } from './Injector';
 
@@ -98,6 +98,13 @@ export function Provider(name?: string) {
         ModuleConfigurator.setProvider(target, name);
         return target;
     };
+}
+
+export function Component(name?: string, config?: IComponentConfiguration){
+    return function(target: any){
+        ModuleConfigurator.setComponent(target, name, config);
+        return target;
+    }
 }
 
 export function Log() {

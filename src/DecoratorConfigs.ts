@@ -11,7 +11,8 @@
     services?: Array<any>
     directives?: Array<any>,
     configurations?: Array<any>,
-    providers?: Array<any>
+    providers?: Array<any>,
+    components?: Array<any>
 }
 
 export interface IDirectiveConfiguration {
@@ -27,6 +28,15 @@ export interface IDirectiveConfiguration {
     templateUrl?: string | Function;
     terminal?: boolean;
     transclude?: boolean | string | { [slot: string]: string };
+    require?: string | string[] | {[controller: string]: string};
+}
+
+export interface IComponentConfiguration{
+    controllerAs?: string;
+    template?: string | Function | (string | Function)[];
+    templateUrl?: string | Function | (string | Function)[];
+    bindings?: {[binding: string]: string};
+    transclude?: boolean | string | {[slot: string]: string};
     require?: string | string[] | {[controller: string]: string};
 }
 

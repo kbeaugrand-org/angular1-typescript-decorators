@@ -2,6 +2,7 @@ import { Module, ModuleConfig, ModuleValue } from '../bower_components/angular1-
 import { MyController } from './Controllers/MyController'
 import { MyDirective } from './Directives/MyDirective';
 import { MyFilter } from './Filters/MyFilter';
+import { MyComponent } from './Components/MyComponent';
 
 @Module({
     name:'angularDemo',
@@ -11,6 +12,7 @@ import { MyFilter } from './Filters/MyFilter';
     controllers: [MyController],
     directives: [MyDirective],
     filters: [MyFilter],
+    components: [MyComponent],
     config: { strictDi: true }
 })
 @ModuleValue('filterValue', 10)

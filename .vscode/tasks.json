@@ -42,7 +42,7 @@
 	"isShellCommand": true,
 
 	//Show the output window only if unrecognized errors occur.
-	"showOutput": "silent",
+	"showOutput": "always",
 
 	//Tell the tsc compiler to use the tsconfig.json from the open folder.
 	"args": ["-p", "."],

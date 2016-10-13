@@ -1,5 +1,5 @@
 ﻿/// <reference path="../typings/tsd.d.ts" />
-import { IModuleConfiguration, IDirectiveConfiguration, IControllerConfiguration } from './DecoratorConfigs'
+import { IModuleConfiguration, IDirectiveConfiguration, IControllerConfiguration, IComponentConfiguration } from './DecoratorConfigs'
 import { Injector } from './Injector';
 import { camelize } from './Tools';
 
@@ -9,6 +9,7 @@ var metadataTypes = {
     moduleConstant: 'module:constant',
     moduleConfig: 'module:config',
     moduleRun: 'module:run',
+    componentConfig: 'component:config',
     controllerConfig: 'controller:config',
     directiveConfig: 'directive:config',
     directiveCompile: 'directive:compileFn',
@@ -43,6 +44,7 @@ export class ModuleConfigurator {
         this.configureFilters(app, module);
         this.configureServices(app, module);
         this.configureProviders(app, module);
+        this.configureComponents(app, module);
 
         var configBlock = Reflect.getMetadata(metadataTypes.moduleConfig, target);
         if (configBlock)
@@ -121,6 +123,11 @@ export class ModuleConfigurator {
 
     static setProvider(target: any, name?: string) {
         Reflect.defineMetadata(metadataTypes.targetName, name, target);
+    }
+
+    static setComponent(target: any, name?: string, config?: IComponentConfiguration) {
+        Injector.inject(target);
+        Reflect.defineMetadata(metadataTypes.componentConfig, config, target);
     }
 
     private addController(app: ng.IModule, target: any) {
@@ -267,6 +274,26 @@ export class ModuleConfigurator {
                 return filterFn.bind(instance);
             }]);
         });
+    }
+
+    private configureComponents(app: ng.IModule, config: IModuleConfiguration){
+       if(!config.components || !config.directives.length)
+        return;
+
+        config.components.forEach(target => {
+            var componentConfig: IComponentConfiguration = Reflect.getMetadata(metadataTypes.componentConfig, target);
+            var componentName: string = this.getTargetName(target);
+
+            if(!componentConfig || !componentName)
+                return;
+
+            var component: ng.IComponentOptions = angular.extend({}, componentConfig);
+
+            component.controller = target;
+
+            console.debug(`Registering Component '${componentName}'`);
+            app.component(componentName, component);
+        })
     }
 
     private configureDirectives(app: ng.IModule, config: IModuleConfiguration) {

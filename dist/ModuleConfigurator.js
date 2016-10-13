@@ -1,15 +1,13 @@
-System.register(['./Injector', './Tools'], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register(['./Injector', './Tools'], function(exports_1) {
     var Injector_1, Tools_1;
     var metadataTypes, ModuleConfigurator;
     return {
         setters:[
-            function (Injector_1_1) {
-                Injector_1 = Injector_1_1;
+            function (_Injector_1) {
+                Injector_1 = _Injector_1;
             },
-            function (Tools_1_1) {
-                Tools_1 = Tools_1_1;
+            function (_Tools_1) {
+                Tools_1 = _Tools_1;
             }],
         execute: function() {
             metadataTypes = {
@@ -18,6 +16,7 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                 moduleConstant: 'module:constant',
                 moduleConfig: 'module:config',
                 moduleRun: 'module:run',
+                componentConfig: 'component:config',
                 controllerConfig: 'controller:config',
                 directiveConfig: 'directive:config',
                 directiveCompile: 'directive:compileFn',
@@ -45,6 +44,7 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                     this.configureFilters(app, module);
                     this.configureServices(app, module);
                     this.configureProviders(app, module);
+                    this.configureComponents(app, module);
                     var configBlock = Reflect.getMetadata(metadataTypes.moduleConfig, target);
                     if (configBlock)
                         app.config(configBlock);
@@ -105,6 +105,10 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                 };
                 ModuleConfigurator.setProvider = function (target, name) {
                     Reflect.defineMetadata(metadataTypes.targetName, name, target);
+                };
+                ModuleConfigurator.setComponent = function (target, name, config) {
+                    Injector_1.Injector.inject(target);
+                    Reflect.defineMetadata(metadataTypes.componentConfig, config, target);
                 };
                 ModuleConfigurator.prototype.addController = function (app, target) {
                     var controllerConfig = Reflect.getMetadata(metadataTypes.controllerConfig, target);
@@ -225,6 +229,21 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                             }]);
                     });
                 };
+                ModuleConfigurator.prototype.configureComponents = function (app, config) {
+                    var _this = this;
+                    if (!config.components || !config.directives.length)
+                        return;
+                    config.components.forEach(function (target) {
+                        var componentConfig = Reflect.getMetadata(metadataTypes.componentConfig, target);
+                        var componentName = _this.getTargetName(target);
+                        if (!componentConfig || !componentName)
+                            return;
+                        var component = angular.extend({}, componentConfig);
+                        component.controller = target;
+                        console.debug("Registering Component '" + componentName + "'");
+                        app.component(componentName, component);
+                    });
+                };
                 ModuleConfigurator.prototype.configureDirectives = function (app, config) {
                     var _this = this;
                     if (!config.directives || !config.directives.length)
@@ -258,7 +277,7 @@ System.register(['./Injector', './Tools'], function(exports_1, context_1) {
                     });
                 };
                 return ModuleConfigurator;
-            }());
+            })();
             exports_1("ModuleConfigurator", ModuleConfigurator);
         }
     }

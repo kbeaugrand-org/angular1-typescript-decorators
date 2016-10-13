@@ -12,7 +12,6 @@
     "target": "es5",
     "module": "system",
     "noEmit": false,
-    "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "noEmitOnError": true,
     "declaration": true,
