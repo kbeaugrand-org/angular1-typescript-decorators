@@ -138,8 +138,8 @@ This will create an angular module that will be bootstraped in the HTML document
 Remarks : `strictDi: true` will tell to angular to use the strict dependency injection. You don't need to take care about it. The angular1-decorators will configure all your dependencies as required.
 
 ### Create a component
-Since Angular2 is coming, Angular1 has implement a component based infratructing, helping you to migrate to the future version.
-Please note that there is not controller implementation according to Angular1 specifications. Otherwise you can develop your component as the expected controller. 
+Since Angular2 is coming, Angular1 has implemented a component based infratructing, helping you to migrate to the future version.
+Please note that there is not controller implementation according to Angular1 specifications. Otherwise you can develop your component class as the expected controller. 
 
 #### Example
 ```ts
