@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<style>
+			body {
+				font-family: sans;
+				font-size: 13px;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="../src/System.js"></script> 
+		<script>
+			document.body.innerHTML = [
+
+				'<strong>Browser</strong> ' + System.browser,
+				'<strong>OS</strong> ' + System.os,
+				'',
+				'<strong>Canvas</strong> ' + System.support.canvas,
+				'<strong>Local storage</strong> ' + System.support.localStorage,
+				'<strong>File API</strong> ' + System.support.file,
+				'<strong>FileSystem API</strong> ' + System.support.fileSystem,
+				'<strong>RequestAnimationFrame</strong> ' + System.support.requestAnimationFrame,
+				'<strong>Session storage</strong> ' + System.support.sessionStorage,
+				'<strong>SVG</strong> ' + System.support.svg,
+				'<strong>WebGL</strong> ' + System.support.webgl,
+				'<strong>Worker</strong> ' + System.support.worker
+
+			].join( '<br />' );
+		</script>
+	</body>
+</html>

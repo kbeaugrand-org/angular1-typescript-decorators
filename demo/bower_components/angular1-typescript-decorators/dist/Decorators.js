@@ -1,6 +1,4 @@
-System.register(['./ModuleConfigurator'], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register(['./ModuleConfigurator'], function(exports_1) {
     var ModuleConfigurator_1;
     function Controller(config) {
         return function (target) {
@@ -100,6 +98,13 @@ System.register(['./ModuleConfigurator'], function(exports_1, context_1) {
         };
     }
     exports_1("Provider", Provider);
+    function Component(name, config) {
+        return function (target) {
+            ModuleConfigurator_1.ModuleConfigurator.setComponent(target, name, config);
+            return target;
+        };
+    }
+    exports_1("Component", Component);
     function Log() {
         return function (target, key, descriptor) {
             var originalMethod = descriptor.value;
@@ -124,8 +129,8 @@ System.register(['./ModuleConfigurator'], function(exports_1, context_1) {
     exports_1("Log", Log);
     return {
         setters:[
-            function (ModuleConfigurator_1_1) {
-                ModuleConfigurator_1 = ModuleConfigurator_1_1;
+            function (_ModuleConfigurator_1) {
+                ModuleConfigurator_1 = _ModuleConfigurator_1;
             }],
         execute: function() {
         }

@@ -1,0 +1,13 @@
+{
+  "name": "systemjs",
+  "homepage": "https://github.com/mrdoob/system.js",
+  "_release": "f2b4bc6157",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "f2b4bc6157d3abe5735dea25de13eb256945c458"
+  },
+  "_source": "https://github.com/mrdoob/system.js.git",
+  "_target": "*",
+  "_originalSource": "systemjs"
+}

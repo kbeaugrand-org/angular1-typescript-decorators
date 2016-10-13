@@ -8,5 +8,5 @@ var gulp = require("gulp"),
 gulp.task('uglify', function(){
     gulp.src('./src/*.ts')
         .pipe(typescript(typescript.createProject('./tsconfig.json'))
-        .
+        
 })

@@ -6,16 +6,16 @@
         <div data-ng-view="">
             <h1>Loading...</h1>
         </div>
-        <script src="/libs/systemjs/dist/system.js"></script>
+        <script src="/bower_components/system.js/dist/system.js"></script>
         <script src="/bower_components/angular/angular.min.js"></script>
         <script src="/bower_components/angular-route/angular-route.min.js"></script>
         <script src="/bower_components/reflect-metadata/Reflect.js"></script>
         <script src="/bower_components/urijs/src/URI.min.js"></script>
         <script>
-            System.config({
+            SystemJS.config({
                 transpiler: 'typescript',
                 map: {
-                    typescript: 'libs/typescript/lib/typescript.js'
+                    typescript: '/libs/typescript/lib/typescript.js'
                 },
                 packages: {
                     "bower_components/angular1-typescript-decorators/dist": {
