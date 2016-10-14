@@ -320,9 +320,11 @@ class MyModule {
 
 ## How to bundle/minify
 You can use SystemJS Build Tool to build your modules independently. 
+This will generate one file per module with it's own imports and minify it.
 
 ### install SystemJS Build Tool
-```npm install systemjs-builder --save
+```bash
+npm install systemjs-builder --save
 ```
 
 ### Configure your gulp task
