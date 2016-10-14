@@ -318,6 +318,58 @@ class MyModule {
 }
 ``` 
 
+## How to bundle/minify
+You can use SystemJS Build Tool to build your modules independently. 
+
+### install SystemJS Build Tool
+```npm install systemjs-builder --save
+```
+
+### Configure your gulp task
+```javascript
+var systemJs = require('systemjs-builder');
+
+gulp.task('system-js', function () {
+    var builder = new systemJs({
+        baseURL: '/wwwroot'
+    });
+
+    builder.config({
+        transpiler: 'typescript',
+        map: {
+            typescript: 'lib/typescript/lib/typescript.js'
+        },
+        packages: {
+            "lib/angular1-typescript-decorators/dist": {
+                defaultExtension: 'js'
+            }
+            "app": {
+                defaultExtension: 'ts'
+            }
+        }
+    });
+
+    builder.buildStatic('content/assets/scripts/app/Module.ts', 'wwwroot/content/dist/scripts/app/Module.min.js', { minify: true, sourceMaps: true, mangle: false});
+});
+```
+Please note that actually when minifying, you must disable mangle in order to keep the original argument names.
+
+### Configure SystemJS
+```html
+<script type="text/javascript">
+    System.config({
+        packages: {
+            "/lib/angular1-typescript-decorators/dist": {
+                defaultExtension: 'js'
+            },
+            "dist": {
+                defaultExtension: 'min.js',
+            }
+        }
+    });
+</script>
+```
+
 ## License
 
 [MIT License](http://ilee.mit-license.org)
